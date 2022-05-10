@@ -1,0 +1,37 @@
+name: Test all stuff
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+permissions:
+  contents: read
+
+jobs:
+  test:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v3
+    
+    - name: Set up Python 3.10
+      uses: actions/setup-python@v3
+      with:
+        python-version: "3.10"
+    
+    - name: Install dependencies
+      run: |
+        python -m pip install --upgrade pip
+        pip install -r requirements.txt
+    
+    - name: Run with test env vars
+      env:
+        SYNC_FIRST_WEEK_NUMBER: ${{ secrets.TEST_SYNC_FIRST_WEEK_NUMBER }}
+        SYNC_DISCORD_WEBHOOK_URL: ${{ secrets.TEST_SYNC_DISCORD_WEBHOOK_URL }}
+        SYNC_DISCORD_CHANNEL_ID: ${{ secrets.TEST_SYNC_DISCORD_CHANNEL_ID }}
+        SYNC_DISCORD_MENTION_ROLE_ID: ${{ secrets.TEST_SYNC_DISCORD_MENTION_ROLE_ID }}
+      run: |
+        python src/sync_notification.py
