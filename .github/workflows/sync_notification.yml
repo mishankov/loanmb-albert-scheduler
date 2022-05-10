@@ -2,8 +2,8 @@ name: Notify about sync meeting
 
 on:
   schedule:
-    # every Wednesday at 13:00 MSK
-    - cron: '0 10 * * 3'
+    # every Wednesday at 12:50 MSK
+    - cron: '50 9 * * 3'
 
 permissions:
   contents: read
