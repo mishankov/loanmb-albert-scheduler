@@ -1,10 +1,9 @@
-name: Test all stuff
+name: Notify about sync meeting
 
 on:
-  push:
-    branches: [ main ]
-  pull_request:
-    branches: [ main ]
+  schedule:
+    # every Wednesday at 13:00 MSK
+    - cron: '0 10 * * 3'
 
 permissions:
   contents: read
@@ -29,9 +28,9 @@ jobs:
     
     - name: Run with test env vars
       env:
-        SYNC_FIRST_WEEK_NUMBER: ${{ secrets.TEST_SYNC_FIRST_WEEK_NUMBER }}
-        SYNC_DISCORD_WEBHOOK_URL: ${{ secrets.TEST_SYNC_DISCORD_WEBHOOK_URL }}
-        SYNC_DISCORD_CHANNEL_ID: ${{ secrets.TEST_SYNC_DISCORD_CHANNEL_ID }}
-        SYNC_DISCORD_MENTION_ROLE_ID: ${{ secrets.TEST_SYNC_DISCORD_MENTION_ROLE_ID }}
+        SYNC_FIRST_WEEK_NUMBER: ${{ secrets.SYNC_FIRST_WEEK_NUMBER }}
+        SYNC_DISCORD_WEBHOOK_URL: ${{ secrets.SYNC_DISCORD_WEBHOOK_URL }}
+        SYNC_DISCORD_CHANNEL_ID: ${{ secrets.SYNC_DISCORD_CHANNEL_ID }}
+        SYNC_DISCORD_MENTION_ROLE_ID: ${{ secrets.SYNC_DISCORD_MENTION_ROLE_ID }}
       run: |
         python src/sync_notification.py
