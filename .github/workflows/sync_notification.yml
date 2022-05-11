@@ -9,7 +9,7 @@ permissions:
   contents: read
 
 jobs:
-  test:
+  notify:
 
     runs-on: ubuntu-latest
 
@@ -26,9 +26,18 @@ jobs:
         python -m pip install --upgrade pip
         pip install -r requirements.txt
     
-    - name: Run with test env vars
+    - name: Test notification with odd first week number
       env:
-        SYNC_FIRST_WEEK_NUMBER: ${{ secrets.SYNC_FIRST_WEEK_NUMBER }}
+        SYNC_FIRST_WEEK_NUMBER: 1
+        SYNC_DISCORD_WEBHOOK_URL: ${{ secrets.SYNC_DISCORD_WEBHOOK_URL }}
+        SYNC_DISCORD_CHANNEL_ID: ${{ secrets.SYNC_DISCORD_CHANNEL_ID }}
+        SYNC_DISCORD_MENTION_ROLE_ID: ${{ secrets.SYNC_DISCORD_MENTION_ROLE_ID }}
+      run: |
+        python src/sync_notification.py
+
+    - name: Test notification with even first week number
+      env:
+        SYNC_FIRST_WEEK_NUMBER: 2
         SYNC_DISCORD_WEBHOOK_URL: ${{ secrets.SYNC_DISCORD_WEBHOOK_URL }}
         SYNC_DISCORD_CHANNEL_ID: ${{ secrets.SYNC_DISCORD_CHANNEL_ID }}
         SYNC_DISCORD_MENTION_ROLE_ID: ${{ secrets.SYNC_DISCORD_MENTION_ROLE_ID }}
