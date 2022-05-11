@@ -27,9 +27,18 @@ jobs:
         python -m pip install --upgrade pip
         pip install -r requirements.txt
     
-    - name: Run with test env vars
+    - name: Run test with odd first week number
       env:
-        SYNC_FIRST_WEEK_NUMBER: ${{ secrets.TEST_SYNC_FIRST_WEEK_NUMBER }}
+        SYNC_FIRST_WEEK_NUMBER: 1
+        SYNC_DISCORD_WEBHOOK_URL: ${{ secrets.TEST_SYNC_DISCORD_WEBHOOK_URL }}
+        SYNC_DISCORD_CHANNEL_ID: ${{ secrets.TEST_SYNC_DISCORD_CHANNEL_ID }}
+        SYNC_DISCORD_MENTION_ROLE_ID: ${{ secrets.TEST_SYNC_DISCORD_MENTION_ROLE_ID }}
+      run: |
+        python src/sync_notification.py
+
+    - name: Run test with even first week number
+      env:
+        SYNC_FIRST_WEEK_NUMBER: 2
         SYNC_DISCORD_WEBHOOK_URL: ${{ secrets.TEST_SYNC_DISCORD_WEBHOOK_URL }}
         SYNC_DISCORD_CHANNEL_ID: ${{ secrets.TEST_SYNC_DISCORD_CHANNEL_ID }}
         SYNC_DISCORD_MENTION_ROLE_ID: ${{ secrets.TEST_SYNC_DISCORD_MENTION_ROLE_ID }}
