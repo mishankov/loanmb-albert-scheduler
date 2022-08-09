@@ -13,7 +13,7 @@ if __name__ == "__main__":
         requests.post(
             config.SYNC_DISCORD_WEBHOOK_URL,
             json={
-                "content": f"<@&{config.SYNC_DISCORD_MENTION_ROLE_ID}> Скоро синхронизация тут: <#{config.SYNC_DISCORD_CHANNEL_ID}>"
+                "content": f"<@&{config.SYNC_DISCORD_MENTION_ROLE_ID}> Скоро синхронизация. Сегодня она в ZOOM: {config.SYNC_ZOOM_ROOM}"
             },
         )
     else:
