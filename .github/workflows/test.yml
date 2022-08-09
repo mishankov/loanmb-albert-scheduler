@@ -33,6 +33,7 @@ jobs:
         SYNC_DISCORD_WEBHOOK_URL: ${{ secrets.TEST_SYNC_DISCORD_WEBHOOK_URL }}
         SYNC_DISCORD_CHANNEL_ID: ${{ secrets.TEST_SYNC_DISCORD_CHANNEL_ID }}
         SYNC_DISCORD_MENTION_ROLE_ID: ${{ secrets.TEST_SYNC_DISCORD_MENTION_ROLE_ID }}
+        SYNC_ZOOM_ROOM: ${{ secrets.TEST_SYNC_ZOOM_ROOM }}
       run: |
         python src/sync_notification.py
 
@@ -42,5 +43,6 @@ jobs:
         SYNC_DISCORD_WEBHOOK_URL: ${{ secrets.TEST_SYNC_DISCORD_WEBHOOK_URL }}
         SYNC_DISCORD_CHANNEL_ID: ${{ secrets.TEST_SYNC_DISCORD_CHANNEL_ID }}
         SYNC_DISCORD_MENTION_ROLE_ID: ${{ secrets.TEST_SYNC_DISCORD_MENTION_ROLE_ID }}
+        SYNC_ZOOM_ROOM: ${{ secrets.TEST_SYNC_ZOOM_ROOM }}
       run: |
         python src/sync_notification.py
