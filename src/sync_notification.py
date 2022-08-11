@@ -10,11 +10,21 @@ if __name__ == "__main__":
 
     if (config.SYNC_FIRST_WEEK_NUMBER - week_number) % 2 == 0:
         log("Sending notification")
-        requests.post(
-            config.SYNC_DISCORD_WEBHOOK_URL,
-            json={
-                "content": f"<@&{config.SYNC_DISCORD_MENTION_ROLE_ID}> Скоро синхронизация. Сегодня она в ZOOM: {config.SYNC_ZOOM_ROOM}"
-            },
-        )
+        
+        if config.SYNC_ZOOM_SWITCH:
+            requests.post(
+                config.SYNC_DISCORD_WEBHOOK_URL,
+                json={
+                    "content": f"<@&{config.SYNC_DISCORD_MENTION_ROLE_ID}> Скоро синхронизация. Сегодня она в ZOOM: {config.SYNC_ZOOM_ROOM}"
+                },
+            )
+        else:
+            requests.post(
+                config.SYNC_DISCORD_WEBHOOK_URL,
+                json={
+                    "content": f"<@&{config.SYNC_DISCORD_MENTION_ROLE_ID}> Скоро синхронизация тут: <#{config.SYNC_DISCORD_CHANNEL_ID}>"
+                },
+            )
+        
     else:
         log("Not sending notification")

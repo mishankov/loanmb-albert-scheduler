@@ -27,22 +27,46 @@ jobs:
         python -m pip install --upgrade pip
         pip install -r requirements.txt
     
-    - name: Run test with odd first week number
+    - name: Run test with odd first week number, ZOOM off
       env:
         SYNC_FIRST_WEEK_NUMBER: 1
         SYNC_DISCORD_WEBHOOK_URL: ${{ secrets.TEST_SYNC_DISCORD_WEBHOOK_URL }}
         SYNC_DISCORD_CHANNEL_ID: ${{ secrets.TEST_SYNC_DISCORD_CHANNEL_ID }}
         SYNC_DISCORD_MENTION_ROLE_ID: ${{ secrets.TEST_SYNC_DISCORD_MENTION_ROLE_ID }}
+        SYNC_ZOOM_SWITCH: False
         SYNC_ZOOM_ROOM: ${{ secrets.TEST_SYNC_ZOOM_ROOM }}
       run: |
         python src/sync_notification.py
 
-    - name: Run test with even first week number
+    - name: Run test with even first week number, ZOOM off
       env:
         SYNC_FIRST_WEEK_NUMBER: 2
         SYNC_DISCORD_WEBHOOK_URL: ${{ secrets.TEST_SYNC_DISCORD_WEBHOOK_URL }}
         SYNC_DISCORD_CHANNEL_ID: ${{ secrets.TEST_SYNC_DISCORD_CHANNEL_ID }}
         SYNC_DISCORD_MENTION_ROLE_ID: ${{ secrets.TEST_SYNC_DISCORD_MENTION_ROLE_ID }}
+        SYNC_ZOOM_SWITCH: False
+        SYNC_ZOOM_ROOM: ${{ secrets.TEST_SYNC_ZOOM_ROOM }}
+      run: |
+        python src/sync_notification.py
+
+    - name: Run test with odd first week number, ZOOM on
+      env:
+        SYNC_FIRST_WEEK_NUMBER: 1
+        SYNC_DISCORD_WEBHOOK_URL: ${{ secrets.TEST_SYNC_DISCORD_WEBHOOK_URL }}
+        SYNC_DISCORD_CHANNEL_ID: ${{ secrets.TEST_SYNC_DISCORD_CHANNEL_ID }}
+        SYNC_DISCORD_MENTION_ROLE_ID: ${{ secrets.TEST_SYNC_DISCORD_MENTION_ROLE_ID }}
+        SYNC_ZOOM_SWITCH: True
+        SYNC_ZOOM_ROOM: ${{ secrets.TEST_SYNC_ZOOM_ROOM }}
+      run: |
+        python src/sync_notification.py
+
+    - name: Run test with even first week number, ZOOM on
+      env:
+        SYNC_FIRST_WEEK_NUMBER: 2
+        SYNC_DISCORD_WEBHOOK_URL: ${{ secrets.TEST_SYNC_DISCORD_WEBHOOK_URL }}
+        SYNC_DISCORD_CHANNEL_ID: ${{ secrets.TEST_SYNC_DISCORD_CHANNEL_ID }}
+        SYNC_DISCORD_MENTION_ROLE_ID: ${{ secrets.TEST_SYNC_DISCORD_MENTION_ROLE_ID }}
+        SYNC_ZOOM_SWITCH: True
         SYNC_ZOOM_ROOM: ${{ secrets.TEST_SYNC_ZOOM_ROOM }}
       run: |
         python src/sync_notification.py
