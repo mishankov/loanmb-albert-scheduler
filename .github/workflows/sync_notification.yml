@@ -32,6 +32,7 @@ jobs:
         SYNC_DISCORD_WEBHOOK_URL: ${{ secrets.SYNC_DISCORD_WEBHOOK_URL }}
         SYNC_DISCORD_CHANNEL_ID: ${{ secrets.SYNC_DISCORD_CHANNEL_ID }}
         SYNC_DISCORD_MENTION_ROLE_ID: ${{ secrets.SYNC_DISCORD_MENTION_ROLE_ID }}
+        SYNC_ZOOM_SWITCH: ${{ secrets.SYNC_ZOOM_SWITCH }}
         SYNC_ZOOM_ROOM: ${{ secrets.SYNC_ZOOM_ROOM }}
       run: |
         python src/sync_notification.py
