@@ -12,6 +12,8 @@ if __name__ == "__main__":
         log("Sending notification")
         
         if config.SYNC_ZOOM_SWITCH:
+            log("Send ZOOM room")
+
             requests.post(
                 config.SYNC_DISCORD_WEBHOOK_URL,
                 json={
@@ -19,6 +21,8 @@ if __name__ == "__main__":
                 },
             )
         else:
+            log("Send Discord channel")
+
             requests.post(
                 config.SYNC_DISCORD_WEBHOOK_URL,
                 json={
