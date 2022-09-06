@@ -70,3 +70,19 @@ jobs:
         SYNC_ZOOM_ROOM: ${{ secrets.TEST_SYNC_ZOOM_ROOM }}
       run: |
         python src/sync_notification.py
+
+    - name: Test COVID control enabled
+      env:
+        COVID_CONTROL_ENABLED: "True"
+        COVID_DISCORD_WEBHOOK_URL: ${{ secrets.TEST_COVID_DISCORD_WEBHOOK_URL }}
+        SYNC_DISCORD_MENTION_ROLE_ID: ${{ secrets.TEST_SYNC_DISCORD_MENTION_ROLE_ID }}
+      run: |
+        python src/covid_control.py
+
+    - name: Test COVID control disabled
+      env:
+        COVID_CONTROL_ENABLED: "False"
+        COVID_DISCORD_WEBHOOK_URL: ${{ secrets.TEST_COVID_DISCORD_WEBHOOK_URL }}
+        SYNC_DISCORD_MENTION_ROLE_ID: ${{ secrets.TEST_SYNC_DISCORD_MENTION_ROLE_ID }}
+      run: |
+        python src/covid_control.py
