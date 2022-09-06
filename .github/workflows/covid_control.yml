@@ -2,8 +2,8 @@ name: COVID control
 
 on:
   schedule:
-    # every Wednesday at 10:40 MSK
-    - cron: '40 7 * * 3'
+    # every Wednesday at 10:00 MSK
+    - cron: '0 7 * * 3'
 
 permissions:
   contents: read
