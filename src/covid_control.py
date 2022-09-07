@@ -10,7 +10,7 @@ if __name__ == "__main__":
         requests.post(
             config.COVID_DISCORD_WEBHOOK_URL,
             json={
-                "content": f"<@&{config.SYNC_DISCORD_MENTION_ROLE_ID}> Кого настиг ковид, поставьте, пожалуйста 🦠"
+                "content": f"<@&{config.SYNC_DISCORD_MENTION_ROLE_ID}> Кого настиг ковид, поставьте, пожалуйста, 🦠"
             },
         )
     else:
