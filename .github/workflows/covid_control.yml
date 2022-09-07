@@ -32,4 +32,4 @@ jobs:
         COVID_DISCORD_WEBHOOK_URL: ${{ secrets.COVID_DISCORD_WEBHOOK_URL }}
         SYNC_DISCORD_MENTION_ROLE_ID: ${{ secrets.SYNC_DISCORD_MENTION_ROLE_ID }}
       run: |
-        python src/sync_notification.py
+        python src/covid_control.py
