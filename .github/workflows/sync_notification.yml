@@ -1,9 +1,10 @@
 name: Notify about sync meeting
 
 on:
-  schedule:
+  workflow_dispatch:
+#   schedule:
     # every Wednesday at 12:40 MSK
-    - cron: '40 9 * * 3'
+#     - cron: '40 9 * * 3'
 
 permissions:
   contents: read
