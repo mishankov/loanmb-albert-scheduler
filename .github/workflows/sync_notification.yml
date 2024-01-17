@@ -4,7 +4,7 @@ on:
   workflow_dispatch:
   schedule:
     # every Wednesday at 12:50 MSK
-    # - cron: '50 9 * * 3'
+    - cron: '50 9 * * 3'
 
 permissions:
   contents: read
